@@ -1,0 +1,65 @@
+{% extends 'components/base.html' %}
+{% load static %}
+{% block title %} {{ title1 }} {% endblock title %}
+{% block content %}
+{% load widget_tweaks %}
+<script src="https://cdn.tailwindcss.com"></script>
+
+<div class="bg-gradient-to-r from-[#CBDCEB] via-[#608BC1] to-[#133E87] min-h-screen flex items-center justify-center p-6">
+    <section class="w-full max-w-3xl p-8 rounded-2xl bg-white shadow-lg transition-all duration-300 transform hover:scale-105" style="margin-top: -10%;">
+        <h1 class="text-4xl text-center font-bold text-[#133E87] mb-4">
+            {{ title2 }}
+        </h1>
+        <p class="text-center text-[#608BC1] mb-8 text-lg tracking-wide">
+            ¡Forma parte de nuestra comunidad!<br>
+            <span class="text-sm text-[#CBDCEB]">Completa el formulario para registrarte</span>
+        </p>
+        <form method="POST" enctype="multipart/form-data" class="grid grid-cols-1 gap-6">
+            {% csrf_token %}
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <label for="{{ form.username.id_for_label }}" class="block text-[#133E87] text-sm font-semibold mb-2">{{ form.username.label }}</label>
+                    {{ form.username|add_class:"w-full p-4 bg-[#F3F3E0] text-[#133E87] border border-[#CBDCEB] rounded-lg focus:ring-2 focus:ring-[#608BC1] focus:outline-none" }}
+                </div>
+                <div>
+                    <label for="{{ form.email.id_for_label }}" class="block text-[#133E87] text-sm font-semibold mb-2">{{ form.email.label }}</label>
+                    {{ form.email|add_class:"w-full p-4 bg-[#F3F3E0] text-[#133E87] border border-[#CBDCEB] rounded-lg focus:ring-2 focus:ring-[#608BC1] focus:outline-none" }}
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <label for="{{ form.password1.id_for_label }}" class="block text-[#133E87] text-sm font-semibold mb-2">{{ form.password1.label }}</label>
+                    {{ form.password1|add_class:"w-full p-4 bg-[#F3F3E0] text-[#133E87] border border-[#CBDCEB] rounded-lg focus:ring-2 focus:ring-[#608BC1] focus:outline-none" }}
+                </div>
+                <div>
+                    <label for="{{ form.password2.id_for_label }}" class="block text-[#133E87] text-sm font-semibold mb-2">{{ form.password2.label }}</label>
+                    {{ form.password2|add_class:"w-full p-4 bg-[#F3F3E0] text-[#133E87] border border-[#CBDCEB] rounded-lg focus:ring-2 focus:ring-[#608BC1] focus:outline-none" }}
+                </div>
+            </div>
+            <div class="mt-6">
+                <button type="submit" class="w-full bg-[#133E87] text-white py-3 rounded-lg font-semibold hover:bg-[#608BC1] transition-all transform hover:scale-105">
+                    Registrarse
+                </button>
+            </div>
+        </form>
+        <p class="text-center text-[#608BC1] mt-6 text-sm">
+            ¿Ya tienes una cuenta? 
+            <a href="{% url 'security:auth_login' %}" class="text-[#133E87] font-semibold hover:underline">
+                Inicia Sesión
+            </a>
+        </p>
+    </section>
+</div>
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden; /* Elimina el scroll */
+    }
+</style>
+
+{% endblock content %}
+
+{% block navbar %}
+{% endblock navbar %}
